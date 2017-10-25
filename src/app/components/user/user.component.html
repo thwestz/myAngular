@@ -1,0 +1,78 @@
+<div class="container">
+  <div>
+    <h1 class="text-center">Angular Class</h1>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <b>Name:</b> {{my_name}}</li>
+      <li class="list-group-item">
+        <b>Age:</b> {{age}}</li>
+      <li class="list-group-item">
+        <b>Email:</b> {{email}}</li>
+      <li class="list-group-item">
+        <b>Address:</b> {{address.street}}, {{address.city}}, {{address.province}}, {{address.postcode}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="row justify-content-center">
+      <h2>Edit Profile</h2>
+
+      <button class="btn btn-primary" (click)=toggleEdit()>Edit</button>
+    </div>
+    <div *ngIf="isEditable == true">
+      <form>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="input-group">
+              <label for="name">
+                <b>Name:</b>
+              </label>
+              <input type="text" class="form-control" [(ngModel)]="my_name" name="name">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group">
+              <label for="age">
+                <b>Age:</b>
+              </label>
+              <input type="text" class="form-control" [(ngModel)]="age" name="age">
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group">
+              <label for="email">
+                <b>Email:</b>
+              </label>
+              <input type="text" class="form-control" [(ngModel)]="email" name="email">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div>
+    <h2>Skills</h2>
+
+    <form (submit)="addSkill(skill.value)">
+      <div>
+        <label for="skill">Skill: </label>
+        <input type="text"  class="form-control"  #skill placeholder="Add your skill">
+      </div>
+    </form>
+
+    <ul class="list-group">
+      <li style="list-style-type: none" *ngFor="let skill of skills; let i = index">
+        {{i+1}}.{{skill}}
+        <button class="btn btn-danger" (click)="removeSkill(skill)">X</button>
+      </li>
+    </ul>
+
+    <h2>Photo List</h2>
+    <ul class="list-group">
+      <li style="list-style-type: none" *ngFor="let photo of photoList;">
+        <img src="{{photo.thumbnailUrl}}">
+        <br> {{photo.title}}</li>
+    </ul>
+  </div>
+</div>
