@@ -10,6 +10,7 @@ import { RouterModule, Routes} from "@angular/router";
 
 import { GetphotoService } from './services/getphoto.service.';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GetDogService } from './services/getDog.Service';
 
 const appRoutes:Routes = [
   {path:"",component:UserComponent},
@@ -31,7 +32,7 @@ const appRoutes:Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ GetphotoService ],
+  providers: [ GetphotoService ,GetDogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

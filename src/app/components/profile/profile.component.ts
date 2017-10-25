@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GetDogService } from '../../services/getDog.Service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private getDogService : GetDogService) { }
+  myDog : {
+    image : string
+  };
   ngOnInit() {
+    this.myDog = {
+      image : ""
+    }
   }
 
+  getDogAPI(){
+   this.getDogService.getRandomDog().subscribe(res => {
+     this.myDog.image = res.message;
+   });
+  }
 }
